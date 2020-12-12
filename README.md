@@ -33,3 +33,20 @@ Gururaj Saileshwar, Christopher Fletcher and Moinuddin Qureshi. **Streamline: A 
        - For the sensitivity study varying shared-array sizes (Table-4 in paper) : `make array_sz`
        - For the sensitivity study with varying synchronization-periods (Table-5 in paper) : `make sync_period`
        - **TODO** For the prior work comparison (Flush+Reload) (Figure-10 in paper) : `make prior_FR`
+
+
+5. Testing the Base Attack:
+   - Run the command: `numbits=1000000; sudo ./bin/receiver.o -n $numbits &; sudo ./bin/sender.o -n $numbits >>sender_out.log 2>&1 ;
+   - The code requires sudo privilege to set core-affinity and scheduler-policy/priority for the program. (You may be prompted to enter the sudo password)
+   - First, the output prints the Bit-Period, Bit-rate in Bits/second, and bit-error-rates (with a breakup of 1->0 errors and 0->1 errors).
+   - Then, the output prints statistics per epoch of 200,0000 bits (the granularity at which synchronization occurs).
+   - Ideally, the results should show the rate of CorrectSamples >99% (i.e. error-rate <1%). If not something is wrong.
+   
+5. Running the Experiments:
+   - While running the experiments, you may be prompted to enter the sudo password for each experiment run. To allow all the experiments to run uninterrupted, the password timeout can be set to 2 hours: by adding `Defaults        env_reset,timestamp_timeout=120` line to `/etc/sudoers` file as described in this [link](https://www.tecmint.com/set-sudo-password-timeout-session-longer-linux/).
+   - **TODO** All the experiments can be run using `./run_exp.sh` (completes in less than 1.5 hours).
+   - Experiments can be run individually as follows:
+       - For base attack (Figure-9, Table-2 in paper): `cd results/base; ./run_base.sh`
+       - **TODO** For the attack with ECC enabled (Table-3 in paper) : `cd results/ecc; ./run_ecc.sh`
+       - **TODO** For the sensitivity study varying shared-array sizes (Table-4 in paper) : `cd results/array_sz; ./run_array_sz.sh`
+       - **TODO** For the sensitivity study with varying synchronization-periods (Table-5 in paper) : `cd results/sync_period; ./run_sync_period.sh`
