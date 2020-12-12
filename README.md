@@ -5,7 +5,7 @@ Gururaj Saileshwar, Christopher Fletcher and Moinuddin Qureshi. **Streamline: A 
 
 ### Hardware Requirements
 * Intel CPU from Haswell or newer generation
-** You can check your  model using `cat /proc/cpuinfo | grep "model name"` and searching for it on (Wikichip)[http://wikichip.org] or (Intel)[https://ark.intel.com].
+    * You can get your CPU model using `cat /proc/cpuinfo | grep "model name"` and  check which generation it is by looking up the model on [Wikichip](http://wikichip.org) or [Intel](https://ark.intel.com).
 * Native execution
 * Sudo priviliges (to enable THP and set the CPU frequency)  
   
