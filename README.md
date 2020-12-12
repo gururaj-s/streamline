@@ -36,7 +36,7 @@ Gururaj Saileshwar, Christopher Fletcher and Moinuddin Qureshi. **Streamline: A 
 
 
 5. Testing the Base Attack:
-   - Run the command: `numbits=1000000; sudo ./bin/receiver.o -n $numbits &; sudo ./bin/sender.o -n $numbits >>sender_out.log 2>&1 ;
+   - Run the command: `numbits=1000000; sudo ./bin/receiver.o -n $numbits &; sudo ./bin/sender.o -n $numbits >>sender_out.log 2>&1` ;
    - The code requires sudo privilege to set core-affinity and scheduler-policy/priority for the program. (You may be prompted to enter the sudo password)
    - First, the output prints the Bit-Period, Bit-rate in Bits/second, and bit-error-rates (with a breakup of 1->0 errors and 0->1 errors).
    - Then, the output prints statistics per epoch of 200,0000 bits (the granularity at which synchronization occurs).
