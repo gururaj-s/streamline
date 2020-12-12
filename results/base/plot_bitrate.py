@@ -4,8 +4,7 @@ import matplotlib.ticker as ticker
 import pandas as pd
 
 ## File name with Data Columns
-#datafile_str="numbits_v_ber_bps_v1.txt"
-datafile_str="numbits_v_ber_bps.txt"
+datafile_str="bitrate_results.txt"
 datafile_col_x="Payload Size (in bits)"
 datafile_col_y1="Bits-Per-Second (bps)"
 datafile_col_y3="Bit-Rate (KB/s)"
@@ -15,7 +14,7 @@ datafile_col_y5="BER 0->1 (%)"
 datafile_col_y6="BER 1-bit (%)"
 datafile_col_y7="BER multi-bit (%)"
 
-fig_str="numbits_v_ber_bps.eps"
+fig_str="bitrate.eps"
 
 #Read Data File using Pandas
 data=pd.read_csv(datafile_str,sep="\s+")

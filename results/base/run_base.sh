@@ -1,7 +1,7 @@
 #!/usr/bin/zsh
-echo ""> numbits_v_ber_bps_out.log
+echo ""> receiver_out.log
 echo "">sender_out.log
-echo "numbits bps ber ber10 ber01 ber1bit bermultibit" > numbits_v_ber_bps.txt;
+echo "numbits bps ber ber10 ber01 ber1bit bermultibit" > bitrate_results.txt;
 echo "numbits bps ber | ber10 ber01 | ber1bit bermultibit"
 
 for i in 200000 500000 1000000 2000000 5000000  10000000 20000000 50000000 100000000 200000000 500000000 1000000000 ; do
@@ -37,17 +37,17 @@ for i in 200000 500000 1000000 2000000 5000000  10000000 20000000 50000000 10000
     bps=$[(bps_a+bps_b+bps_c+bps_d+bps_e)/5]; ber=$[100-(bcr_a+bcr_b+bcr_c+bcr_d+bcr_e)/5]; ber10=$[(ber10_a+ber10_b+ber10_c+ber10_d+ber10_e)/5]; ber01=$[(ber01_a+ber01_b+ber01_c+ber01_d+ber01_e)/5];    
     ber1bit=$[(ber1bit_a+ber1bit_b+ber1bit_c+ber1bit_d+ber1bit_e)/5]; bermultibit=$[(bermultibit_a+bermultibit_b+bermultibit_c+bermultibit_d+bermultibit_e)/5];
 
-    printf "%d  %d  %0.2f%%  %0.2f%%  %0.2f%%  %0.2f%%  %0.2f%%\n" $i $bps $ber $ber10 $ber01 $ber1bit $bermultibit >> numbits_v_ber_bps.txt;
+    printf "%d  %d  %0.2f%%  %0.2f%%  %0.2f%%  %0.2f%%  %0.2f%%\n" $i $bps $ber $ber10 $ber01 $ber1bit $bermultibit >> bitrate_results.txt;
     printf "%d  %d  %0.2f%% | %0.2f%%  %0.2f%% | %0.2f%%  %0.2f%%\n" $i $bps $ber $ber10 $ber01 $ber1bit $bermultibit 
-    echo "$out_a" >> numbits_v_ber_bps_out.log
-    echo "----------------------------------------------" >> numbits_v_ber_bps_out.log
-    echo "$out_b" >> numbits_v_ber_bps_out.log
-    echo "----------------------------------------------" >> numbits_v_ber_bps_out.log
-    echo "$out_c" >> numbits_v_ber_bps_out.log
-    echo "----------------------------------------------" >> numbits_v_ber_bps_out.log
-    echo "$out_d" >> numbits_v_ber_bps_out.log
-    echo "----------------------------------------------" >> numbits_v_ber_bps_out.log
-    echo "$out_e" >> numbits_v_ber_bps_out.log
-    echo "----------------------------------------------" >> numbits_v_ber_bps_out.log
-    echo "----------------------------------------------" >> numbits_v_ber_bps_out.log
+    echo "$out_a" >> receiver_out.log
+    echo "----------------------------------------------" >> receiver_out.log
+    echo "$out_b" >> receiver_out.log
+    echo "----------------------------------------------" >> receiver_out.log
+    echo "$out_c" >> receiver_out.log
+    echo "----------------------------------------------" >> receiver_out.log
+    echo "$out_d" >> receiver_out.log
+    echo "----------------------------------------------" >> receiver_out.log
+    echo "$out_e" >> receiver_out.log
+    echo "----------------------------------------------" >> receiver_out.log
+    echo "----------------------------------------------" >> receiver_out.log
 done
