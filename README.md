@@ -3,7 +3,13 @@
 ### Citation:  
 Gururaj Saileshwar, Christopher Fletcher and Moinuddin Qureshi. **Streamline: A Fast, Flushless Cache Covert-Channel Attack by Enabling Asynchronous Collusion**. In _Proceedings of the 26th International Conference on Architectural Support for Programming Languages and Operating Systems, ASPLOS 2021_.
 
-### Packages Required
+### Hardware Requirements
+* Intel CPU from Haswell or newer generation
+** You can check your  model using `cat /proc/cpuinfo | grep "model name"` and searching for it on (Wikichip)[http://wikichip.org] or (Intel)[https://ark.intel.com].
+* Native execution
+* Sudo priviliges (to enable THP and set the CPU frequency)  
+  
+### Software Requirements
 * Command-line tool *cpupower* : On Fedora `dnf install kernel-tools`   
 
 ### Steps to Run
@@ -12,7 +18,17 @@ Gururaj Saileshwar, Christopher Fletcher and Moinuddin Qureshi. **Streamline: A 
 - On Fedora: Checking if this is enabled : `cat /sys/kernel/mm/transparent_hugepage/enabled`  
 - On Fedora: Enabling THP : `su ;` to enter super-user mode. Then, `echo "always" > /sys/kernel/mm/transparent_hugepage/enabled`  
 
-2. Setting the CPU Frequency to fixed value (this ensures stable bit-rate measurement)
+2. Set the CPU Frequency to fixed value (this ensures stable bit-rate measurement):
 - On Fedora: Setting constant frequency - `sudo cpupower frequency-set -g performance`
 - On Fedora: Reading the frequency - `cpupower frequency-info | grep "current CPU frequency"`
 
+3. Setting the System-Specific Parameters in `src/params.hh`:
+- **TODO**
+
+4. Building the Attack:
+- For all configurations : `make all`
+- For only baseline attack (Figure-9, Table-2 in paper) : `make base`
+- For only attack with ECC (Table-3 in paper) : `make ecc`
+- For only sensitivity study with varying shared-array sizes (Table-4 in paper) : `make array_sz`
+- For only sensitivity study with varying synchronization-periods (Table-5 in paper) : `make sync_period`
+- **TODO** For only prior work comparison (Flush+Reload) (Figure-10 in paper) : `make prior_FR`
