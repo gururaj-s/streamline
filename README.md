@@ -1,16 +1,16 @@
 # Streamline Covert Channel Attack (ASPLOS'21)
 
-### Citation:  
+### Citation  
 Gururaj Saileshwar, Christopher Fletcher and Moinuddin Qureshi. **Streamline: A Fast, Flushless Cache Covert-Channel Attack by Enabling Asynchronous Collusion**. In _Proceedings of the 26th International Conference on Architectural Support for Programming Languages and Operating Systems, ASPLOS 2021_.
 
 ### Hardware Requirements
 * Intel CPU from Haswell or newer generation
-    * You can get your CPU model using `cat /proc/cpuinfo | grep "model name"` and  check which generation it is by looking up the model on [Wikichip](http://wikichip.org) or [Intel](https://ark.intel.com).
+    * You can check your CPU model with `cat /proc/cpuinfo | grep "model name"` and learn which generation it is by looking up the model on [Wikichip](http://wikichip.org) or [Intel's Repository](https://ark.intel.com).
 * Native execution
-* Sudo priviliges (to enable THP and set the CPU frequency)  
+* Sudo priviliges (to enable THP and set the CPU frequency to a constant value)  
   
 ### Software Requirements
-* Command-line tool *cpupower* : On Fedora `dnf install kernel-tools`   
+* Command-line tool *cpupower* : On Fedora, this can be installed with `sudo dnf install kernel-tools`  
 
 ### Steps to Run
 
@@ -26,9 +26,10 @@ Gururaj Saileshwar, Christopher Fletcher and Moinuddin Qureshi. **Streamline: A 
 - **TODO**
 
 4. Building the Attack:
-- For all configurations : `make all`
-- For only baseline attack (Figure-9, Table-2 in paper) : `make base`
-- For only attack with ECC (Table-3 in paper) : `make ecc`
-- For only sensitivity study with varying shared-array sizes (Table-4 in paper) : `make array_sz`
-- For only sensitivity study with varying synchronization-periods (Table-5 in paper) : `make sync_period`
-- **TODO** For only prior work comparison (Flush+Reload) (Figure-10 in paper) : `make prior_FR`
+- To build the binaries for all the attack experiments, use `make all`
+- To only build the binaries for some of the experiments, use the following:
+    - For the baseline attack (Figure-9, Table-2 in paper) : `make base`
+    - For the attack with ECC enabled (Table-3 in paper) : `make ecc`
+    - For the sensitivity study varying shared-array sizes (Table-4 in paper) : `make array_sz`
+    - For the sensitivity study with varying synchronization-periods (Table-5 in paper) : `make sync_period`
+    - **TODO** For the prior work comparison (Flush+Reload) (Figure-10 in paper) : `make prior_FR`

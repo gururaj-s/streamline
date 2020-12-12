@@ -1,7 +1,7 @@
 all: create_folder base ecc array_sz sync_period
 
 create_folder:
-	mkdir -p bin/sensitivity
+	mkdir -p  bin/sensitivity
 base: sender receiver 
 ecc: sender_ECC receiver_ECC
 array_sz: sender_arraysz_8X receiver_arraysz_8X sender_arraysz_4X receiver_arraysz_4X \
