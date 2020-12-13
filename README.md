@@ -41,8 +41,8 @@ Gururaj Saileshwar, Christopher Fletcher and Moinuddin Qureshi. **Streamline: A 
    - The test should run within a few seconds and print the following output:
        - First, the Bit-Period, Bit-rate, and bit-error-rates (with a breakup of 1->0 errors and 0->1 errors).
        - Then, the statistics per epoch of 200,0000 bits (the granularity at which synchronization occurs).
-   - Ideally, the FinalCorrectSamples should be >99% (i.e. error-rate is <1%); if yes, we can proceed to running the experiments.
-   - If the error-rate is high, something is wrong (perhaps the system parameter configuration?).  
+   - Ideally, the FinalCorrectSamples in the output should be >99% (i.e. error-rate is <1%).
+       - A high error-rate could indicate misconfiguration of the system parameters, and subsequent experiments might fail as well..  
    
 5. Running the Experiments:
    - While running the experiments, you may be prompted to enter the sudo password for each experiment run. To allow all the experiments to run uninterrupted, the password timeout can be set to 2 hours: by adding `Defaults        env_reset,timestamp_timeout=120` line to `/etc/sudoers` file as described in this [link](https://www.tecmint.com/set-sudo-password-timeout-session-longer-linux/).
