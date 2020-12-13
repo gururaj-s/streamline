@@ -703,64 +703,65 @@ int main(int argc, char **argv)
  
 
   //For each epoch, print the delta_Tx-Rx,error-rate.
-  printf("EpochID, \t Delta_tx-rx, \t Correct-Tx-rate, \t 1->0.Error, \t 0->1.Error.\
- TX_REACH_TIME, TX_COMPLETE_TIME, RX_REACH_TIME, RX_STARTED_TIME, RX_COMPLETE_TIME \n");
+  printf("BitID(in1000s), \t Correct-Tx-rate, \t 1->0.Error, \t 0->1.Error.\
+ RX_SYNCREACH_TIME, RX_SYNCSTART_TIME, RX_SYNCCOMPLETE_TIME \n");
 
- uint64_t epoch_id=0;
- uint64_t epoch_correct_samples=0,epoch_num_samples=0;
- uint64_t epoch_one2zero_error = 0, epoch_zero2one_error = 0;
+  uint64_t epoch_id=0;
+  uint64_t epoch_correct_samples=0,epoch_num_samples=0;
+  uint64_t epoch_one2zero_error = 0, epoch_zero2one_error = 0;
 
  
- for(uint64_t i=0; i<NUM_BITS; i++){
-   //breaking condition.
-   if(i >= rx_loop_count)
-     break;
+  for(uint64_t i=0; i<NUM_BITS; i++){
+    //breaking condition.
+    if(i >= rx_loop_count)
+      break;
 
-   // printf("%d\n",i);
-   epoch_num_samples++;
+    // printf("%d\n",i);
+    epoch_num_samples++;
 
-   //Modulate Payload with Channel Encoding.
-   if(i%TX_SYNC_BITFREQ == 0)
-     mt.seed(42); //Mersenne Twister PRNG engine
+    //Modulate Payload with Channel Encoding.
+    if(i%TX_SYNC_BITFREQ == 0)
+      mt.seed(42); //Mersenne Twister PRNG engine
      
-   int channel_enc_i = channel_enc(mt);
-   int tx_act = tx_payload[i] ^ channel_enc_i;
-   int rx_act = rx_payload[i] ^ channel_enc_i;
+    int channel_enc_i = channel_enc(mt);
+    int tx_act = tx_payload[i] ^ channel_enc_i;
+    int rx_act = rx_payload[i] ^ channel_enc_i;
 
-   if(tx_act == rx_act)
-        epoch_correct_samples++;
-   else
-     tx_payload[i]?epoch_one2zero_error++:epoch_zero2one_error++;
+    if(tx_act == rx_act)
+      epoch_correct_samples++;
+    else
+      tx_payload[i]?epoch_one2zero_error++:epoch_zero2one_error++;
 
-   //End of a epoch
-   if( (i % HEARTBEAT_FREQ) == (HEARTBEAT_FREQ - 1) ) {
+    //End of a epoch
+    if( (i % HEARTBEAT_FREQ) == (HEARTBEAT_FREQ - 1) ) {
 
-     if(epoch_id % (TX_SYNC_BITFREQ/HEARTBEAT_FREQ) == 0 ){
-       int sync_id = i/TX_SYNC_BITFREQ;
-       //Printf for the epoch (EpochID, Delta_tx-rx,error-rate.
-       printf("%llu \t %.2f\% \t %.2f\% \t %.2f\% \t %lld \t %lld \t %lld \t %d \n", \
-              epoch_id,100.0*epoch_correct_samples/epoch_num_samples,
-              100.0*epoch_one2zero_error/epoch_num_samples,100.0*epoch_zero2one_error/epoch_num_samples, \
-              rxsync_reached_timevec[sync_id], \
-              rxsync_start_timevec[sync_id]-rxsync_reached_timevec[sync_id],
-              rxsync_complete_timevec[sync_id]-rxsync_reached_timevec[sync_id],rxsync_epoch_miss[sync_id]);
-     }
+      if(epoch_id % (TX_SYNC_BITFREQ/HEARTBEAT_FREQ) == 0 ){
+        int sync_id = i/TX_SYNC_BITFREQ;
+        //BitID(in1000Bits), \t Correct-Tx-rate, \t 1->0.Error, \t 0->1.Error. \
+        RX_SYNCREACH_TIME, RX_SYNCSTART_TIME, RX_SYNCCOMPLETE_TIME 
+        printf("%llu \t %.2f\% \t %.2f\% \t %.2f\% \t %lld \t %lld \t %lld \t %d \n", \
+               epoch_id,100.0*epoch_correct_samples/epoch_num_samples,
+               100.0*epoch_one2zero_error/epoch_num_samples,100.0*epoch_zero2one_error/epoch_num_samples, \
+               rxsync_reached_timevec[sync_id], \
+               rxsync_start_timevec[sync_id]-rxsync_reached_timevec[sync_id],
+               rxsync_complete_timevec[sync_id]-rxsync_reached_timevec[sync_id],rxsync_epoch_miss[sync_id]);
+      }
       
-     epoch_id++;
-     epoch_correct_samples = 0;
-     epoch_num_samples=0;
-     epoch_zero2one_error =0;
-     epoch_one2zero_error =0;
-   }
+      epoch_id++;
+      epoch_correct_samples = 0;
+      epoch_num_samples=0;
+      epoch_zero2one_error =0;
+      epoch_one2zero_error =0;
+    }
     
- }
+  }
 
- printf("RXSync-Misses: %d in %llu bits\n",rxsync_miss,NUM_BITS);
+  printf("RXSync-Misses: %d in %llu bits\n",rxsync_miss,NUM_BITS);
 
- for(int j=0; j< debug_rxsync_time.size();j++){
-   printf("Bit-ID:%llu, RX-Sync-Delay:%llu, Rx-Sync-Timeout:%llu\n",\
-          debug_timeout_bitid[j],debug_rxsync_time[j],debug_timeout_duration[j]);
- }
+  for(int j=0; j< debug_rxsync_time.size();j++){
+    printf("Bit-ID:%llu, RX-Sync-Delay:%llu, Rx-Sync-Timeout:%llu\n",\
+           debug_timeout_bitid[j],debug_rxsync_time[j],debug_timeout_duration[j]);
+  }
  
 #endif
 #endif
