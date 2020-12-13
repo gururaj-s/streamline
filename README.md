@@ -39,7 +39,7 @@ Gururaj Saileshwar, Christopher Fletcher and Moinuddin Qureshi. **Streamline: A 
    - Run the command: `numbits=1000000; sudo ./bin/receiver.o -n $numbits &; sudo ./bin/sender.o -n $numbits >>sender_out.log 2>&1` ;
    - The code requires sudo privilege to set core-affinity and scheduler-policy/priority for the program.
    - The test should run within a few seconds and print the following output:
-       - First, the Bit-Period, Bit-rate in Bits/second, and bit-error-rates (with a breakup of 1->0 errors and 0->1 errors).
+       - First, the Bit-Period, Bit-rate, and bit-error-rates (with a breakup of 1->0 errors and 0->1 errors).
        - Then, the statistics per epoch of 200,0000 bits (the granularity at which synchronization occurs).
    - Ideally, the FinalCorrectSamples should be >99% (i.e. error-rate is <1%); if yes, we can proceed to running the experiments.
    - If the error-rate is high, something is wrong (perhaps the system parameter configuration?).  
