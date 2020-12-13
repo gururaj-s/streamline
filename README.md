@@ -41,7 +41,7 @@ Gururaj Saileshwar, Christopher Fletcher and Moinuddin Qureshi. **Streamline: A 
    - The test should run within a few seconds and print the following output:
        - First, the Bit-Period, Bit-rate, and bit-error-rates (with a breakup of 1->0 errors and 0->1 errors).
        - Then, the statistics per epoch of 200,0000 bits (the granularity at which synchronization occurs).
-   - Ideally, the FinalCorrectSamples in the output should be >99% (i.e. error-rate is <1%).
+   - FinalCorrectSamples in the output should be >99% (i.e. error-rate is <1%).
        - A high error-rate could indicate misconfiguration of the system parameters, and subsequent experiments might fail as well..  
    
 5. Running the Experiments:
