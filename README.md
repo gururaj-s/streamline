@@ -36,7 +36,7 @@ Gururaj Saileshwar, Christopher Fletcher and Moinuddin Qureshi. **Streamline: A 
        - Distribution of L2-Hit vs LLC-Miss latencies can be visualized using `python plot_latency_dist.py`.  
    - Set the `CACHE_SZ` in src/utils.hh (to LLC Size in _Bytes_). This is identified using `grep "cache size" /proc/cpuinfo`
        - If `CACHE_SZ > 12MB`, then the size of `shared_readonly_file.txt` has to be increased (git does not allow files larger than 100MB). This can be done by `head -c (1+8*<CACHE_SZ_IN_MB>)M </dev/urandom >shared_readonly_file.txt`
-   - Set the `SHARED_READONLY_FILE_PATH` (to full path of shared_readonly_file.txt in the repository)
+   - Set the `SHARED_READONLY_FILE_PATH` (to the full path of shared_readonly_file.txt in the repository)
    
 4. Building the Attack:
    - To build the binaries for all the attack experiments, use `make all`
