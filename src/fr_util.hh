@@ -32,7 +32,7 @@
 #define CHANNEL_SYNC_TIMEMASK_DEF           0x000FFFFF
 #define CHANNEL_SYNC_JITTER_DEF             0x0100
 
-#define DEFAULT_FILE_NAME ((char*)"/home/gururaj/Documents/Research/streamline/src/streamline_processes/resources/shared_file.txt")
+#define DEFAULT_FILE_NAME ((char*)"/home/gururaj/Documents/Research/streamline/PUBLIC_ASPLOS21_REPO/streamline/shared_readonly_file.txt")
 #define DEFAULT_FILE_OFFSET	0x0
 #define DEFAULT_FILE_SIZE	((uint64_t)(4*2*8*1024*1024 + 1024*1024))
 #define CACHE_BLOCK_SIZE	64
