@@ -32,11 +32,11 @@ Gururaj Saileshwar, Christopher Fletcher and Moinuddin Qureshi. **Streamline: A 
 3. Setting the System-Specific Parameters in `src/utils.hh`:
    - Set the `SYS_FREQ_MHZ` (to the average system frequency in MHz, as measured above)
    - Set the `LLC_MISS_THRESHOLD_CYCLES` by profiling it as below: 
-       - Profliing the LLC-Miss Latency can be done by: `cd system_config; ./run_profiling.sh`. The recommended `LLC_MISS_THRESHOLD_CYCLES` is printed at end of the output (and in results.txt).
-       - The distribution of L2-Hit vs LLC-Miss latencies can be visualized using `python plot_latency_dist.py`.  
-   - Set the `CACHE_SZ` in src/utils.hh (set it to the LLC Size in _Bytes_). This can be identified using `grep "cache size" /proc/cpuinfo`
+       - `cd system_config; ./run_profiling.sh`. The recommended `LLC_MISS_THRESHOLD_CYCLES` is printed at end of the output (and in results.txt).
+       - Distribution of L2-Hit vs LLC-Miss latencies can be visualized using `python plot_latency_dist.py`.  
+   - Set the `CACHE_SZ` in src/utils.hh (to LLC Size in _Bytes_). This is identified using `grep "cache size" /proc/cpuinfo`
        - If `CACHE_SZ > 12MB`, then the size of `shared_readonly_file.txt` has to be increased (git does not allow files larger than 100MB). This can be done by `head -c (1+8*<CACHE_SZ_IN_MB>)M </dev/urandom >shared_readonly_file.txt`
-   - Set the SHARED_READONLY_FILE_PATH in src/utils.hh (set it to the full path of shared_readonly_file.txt in the repository)
+   - Set the `SHARED_READONLY_FILE_PATH` (to full path of shared_readonly_file.txt in the repository)
    
 4. Building the Attack:
    - To build the binaries for all the attack experiments, use `make all`
