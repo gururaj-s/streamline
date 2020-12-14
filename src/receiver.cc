@@ -555,7 +555,7 @@ int main(int argc, char **argv)
   //------ Error-Correction and Analysis --------
   //Calculate Bit Period.
   long bit_period_cycles = (rx_end_time - rx_start_time)/rx_loop_count*1.0; //cycles
-  double freq_mhz = 3900; 
+  double freq_mhz = SYS_FREQ_MHZ; 
   double bit_period_us = (1.0*bit_period_cycles/freq_mhz);
 
   //Calculate the error-rate:
