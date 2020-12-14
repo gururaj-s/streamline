@@ -65,6 +65,6 @@ Gururaj Saileshwar, Christopher Fletcher and Moinuddin Qureshi. **Streamline: A 
        - For the sensitivity study varying shared-array sizes (Table-4 in paper) : `cd results/array_sz; ./run_array_sz.sh`
        - For the sensitivity study with varying synchronization-periods (Table-5 in paper) : `cd results/sync_period; ./run_sync_period.sh`
 
-**6. Analyzing the Results:**
+**7. Analyzing the Results:**
    - After the run-scripts complete, the results are saved in `results/*/*_results.txt` for each experiment.
    - **TODO** To visualize the results, use `jupyter notebook plot_results.*`
