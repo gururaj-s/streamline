@@ -31,10 +31,12 @@ Gururaj Saileshwar, Christopher Fletcher and Moinuddin Qureshi. **Streamline: A 
 
 3. Setting the System-Specific Parameters in `src/params.hh`:
    - Set the SYS_FREQ_MHZ in src/utils.hh (set it to the average system frequency in MHz measured above)
-   - Set the DEFAULT_FILENAME path in src/fr_util.hh (set it to the full path of shared_readonly_file.txt in the repository)
-   - **TODO: Fix SegFault with this Step**:- Set the CACHE_SZ in src/utils.hh (set it to the LLC Size in Bytes). The size in KB can be identified using `grep "cache size" /proc/cpuinfo`
-       - If CACHE_SZ > 12MB, then size of shared_readonly_file.txt needs to be increased (to beyond 8*CACHE_SZ). This can be done with `head -c <CACHE_SZ_IN_MB+1>M </dev/urandom >shared_readonly_file.txt`
-   - **TODO: LLC-Hit-Threshold**
+   - Set the LLC_MISS_THRESHOLD_CYCLES in src/utils.hh
+       - This can be profiled using `cd system_config; ./run_profiling.sh`. The recommended LLC_MISS_THRESHOLD_CYCLES is printed at end of the output (and in results.txt).
+       - The distribution of L2-Hit vs LLC-Miss latencies can also be visualized using `python plot_latency_dist.py`.  
+   - Set the CACHE_SZ in src/utils.hh (set it to the LLC Size in _Bytes_). This can be identified using `grep "cache size" /proc/cpuinfo`
+       - If CACHE_SZ > 12MB, then the size of the shared_readonly_file.txt needs to be increased (as git does not allow uploading files larger than 100MB). This can be done with `head -c (1+8*<CACHE_SZ_IN_MB>)M </dev/urandom >shared_readonly_file.txt`
+   - Set the SHARED_READONLY_FILE_PATH in src/utils.hh (set it to the full path of shared_readonly_file.txt in the repository)
    
 4. Building the Attack:
    - To build the binaries for all the attack experiments, use `make all`
