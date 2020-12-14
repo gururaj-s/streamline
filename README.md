@@ -56,7 +56,7 @@ Gururaj Saileshwar, Christopher Fletcher and Moinuddin Qureshi. **Streamline: A 
        - A high error-rate could indicate a misconfiguration of the attack parameters; subsequent experiments might fail as well.  
    
 5. Running the Experiments:
-   - While running the experiments, you may be prompted to enter the sudo password for each experiment run. To allow all the experiments to run uninterrupted, the password timeout can be set to 2 hours: by adding `Defaults        env_reset,timestamp_timeout=120` line to `/etc/sudoers` file as described in this [link](https://www.tecmint.com/set-sudo-password-timeout-session-longer-linux/).
+   - While running the experiments, you may be prompted to enter the sudo password for each experiment run. To allow all the experiments to run uninterrupted, the password timeout can be set to 2 hours: by modifying `Defaults        env_reset` line in _etc/sudoers_ to `Defaults        env_reset, timestamp_timeout=180` as described in this [link](https://www.tecmint.com/set-sudo-password-timeout-session-longer-linux/).
    - All the experiments can be run using `./run_exp.sh` (completes in less than 1.5 hours).
    - Experiments can be run individually as follows:
        - For base attack (Figure-9, Table-2 in paper): `cd results/base; ./run_base.sh`
