@@ -10,17 +10,24 @@ Gururaj Saileshwar, Christopher Fletcher and Moinuddin Qureshi. **Streamline: A 
 * Sudo priviliges (to enable THP and set the CPU frequency to a constant value)  
   
 ### Software Requirements
-* Command-line tool *cpupower* : On Fedora, this can be installed with `sudo dnf install kernel-tools`  
-
+* Command-line tool *cpupower* :
+    *On Fedora, this can typically be installed with `sudo dnf install kernel-tools`
+    *On Ubuntu, this can typically be installed with `sudo apt-get install linux-tools-<KERNEL-VERSION>-generic`
+* Python3 and Jupyter Notebooks for Plotting & Visualizing results:
+    *On Fedora, this can be typically installed with `sudo dnf install python3 python3-jupyter_core`
+    *On Ubuntu, you can refer this [link](https://www.digitalocean.com/community/tutorials/how-to-set-up-jupyter-notebook-with-python-3-on-ubuntu-18-04) for instructions.
+    
 ### Steps to Run
 
 1. Enable Transparent Huge Pages (THP):
-   - On Fedora: Checking if this is enabled : `cat /sys/kernel/mm/transparent_hugepage/enabled`  
-   - On Fedora: Enabling THP : `su ;` to enter super-user mode. Then, `echo "always" > /sys/kernel/mm/transparent_hugepage/enabled`  
+   - On Fedora and Ubuntu: Checking the status of THP: `cat /sys/kernel/mm/transparent_hugepage/enabled`   (note the default value)
+   - To enable THP : `sudo -i ;` to enter root mode. Then, `echo "always" > /sys/kernel/mm/transparent_hugepage/enabled` (after completing the experiments, you may want to reset this to default by repeating `echo "<default value>" > ...`)
 
-2. Set the CPU Frequency to fixed value (this ensures stable bit-rate measurement):
-   - On Fedora: Setting constant frequency - `sudo cpupower frequency-set -g performance`
-   - On Fedora: Reading the frequency - `cpupower frequency-info | grep "current CPU frequency"`
+2. Set the CPU Frequency to a stable value (this ensures stable bit-rate measurement):
+   - On Fedora and Ubuntu: First, check the default frequency governor set in the current policy: `cpupower frequency-info | grep governor`
+   - Set the frequency governer to "performance" - `sudo cpupower frequency-set -g performance`
+   - Read the frequency and make sure it is relatively stable - `for i in 1 2 3 4 5; do cpupower frequency-info | grep "current CPU frequency"; done`
+   - Note the average frequency and set it in the next step in `src/params.hh`
 
 3. Setting the System-Specific Parameters in `src/params.hh`:
    - **TODO**
