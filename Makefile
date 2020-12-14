@@ -10,6 +10,8 @@ sync_period: sender_sync_25000 receiver_sync_25000   sender_sync_50000  receiver
 		     sender_sync_100000 receiver_sync_100000 sender_sync_500000 receiver_sync_500000
 clean:
 	rm -rf bin/*.o ; rm -rf bin/sensitivity/*.o
+clean_results:
+	rm -rf results/*/*.txt results/*/*.log;
 
 #-------------------------
 # DEFINES
