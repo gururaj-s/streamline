@@ -11,11 +11,11 @@ Gururaj Saileshwar, Christopher Fletcher and Moinuddin Qureshi. **Streamline: A 
   
 ### Software Requirements
 * Command-line tool *cpupower* :
-    *On Fedora, this can typically be installed with `sudo dnf install kernel-tools`
-    *On Ubuntu, this can typically be installed with `sudo apt-get install linux-tools-<KERNEL-VERSION>-generic`
+    * On Fedora, this can typically be installed with `sudo dnf install kernel-tools`
+    * On Ubuntu, this can typically be installed with `sudo apt-get install linux-tools-<KERNEL-VERSION>-generic`
 * Python3 and Jupyter Notebooks for Plotting & Visualizing results:
-    *On Fedora, this can be typically installed with `sudo dnf install python3 python3-jupyter_core`
-    *On Ubuntu, you can refer this [link](https://www.digitalocean.com/community/tutorials/how-to-set-up-jupyter-notebook-with-python-3-on-ubuntu-18-04) for instructions.
+    * On Fedora, this can be typically installed with `sudo dnf install python3 python3-jupyter_core`
+    * On Ubuntu, you can refer this [link](https://www.digitalocean.com/community/tutorials/how-to-set-up-jupyter-notebook-with-python-3-on-ubuntu-18-04) for instructions.
     
 ### Steps to Run
 
