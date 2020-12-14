@@ -47,7 +47,7 @@ Gururaj Saileshwar, Christopher Fletcher and Moinuddin Qureshi. **Streamline: A 
        - For the sensitivity study with varying synchronization-periods (Table-5 in paper) : `make sync_period`
 
 5. Testing the Base Attack:
-   - Run the command: `numbits=1000000; sudo ./bin/receiver.o -n $numbits &; sudo ./bin/sender.o -n $numbits >>sender_out.log 2>&1` ;
+   - Run the command: `numbits=1000000; sudo ./bin/receiver.o -n $numbits & sudo ./bin/sender.o -n $numbits >>sender_out.log 2>&1`
    - The code requires sudo privilege to set core-affinity and scheduler-policy/priority for the program.
    - The test should run within a few seconds and print the following output:
        - First, the Bit-Period, Bit-rate, and bit-error-rates (with a breakup of 1->0 errors and 0->1 errors).
@@ -57,7 +57,7 @@ Gururaj Saileshwar, Christopher Fletcher and Moinuddin Qureshi. **Streamline: A 
    
 5. Running the Experiments:
    - While running the experiments, you may be prompted to enter the sudo password for each experiment run. To allow all the experiments to run uninterrupted, the password timeout can be set to 2 hours: by modifying `Defaults        env_reset` line in _etc/sudoers_ to `Defaults        env_reset, timestamp_timeout=180` as described in this [link](https://www.tecmint.com/set-sudo-password-timeout-session-longer-linux/).
-   - All the experiments can be run using `./run_exp.sh` (completes in less than 1.5 hours).
+   - All the experiments can be run using `./run_exp.sh` (completes in 2-3 hours).
    - Experiments can be run individually as follows:
        - For base attack (Figure-9, Table-2 in paper): `cd results/base; ./run_base.sh`
        - For the attack with ECC enabled (Table-3 in paper) : `cd results/ecc; ./run_ecc.sh`
@@ -65,5 +65,5 @@ Gururaj Saileshwar, Christopher Fletcher and Moinuddin Qureshi. **Streamline: A 
        - For the sensitivity study with varying synchronization-periods (Table-5 in paper) : `cd results/sync_period; ./run_sync_period.sh`
 
 6. Analyzing the Results:
-   - After the run-scripts complete, the results are saved in : `results/*/*_results.txt` for each of the experiments.
+   - After the run-scripts complete, the results are saved in `results/*/*_results.txt` for each experiment.
    - **TODO** To visualize the results, use `jupyter notebook plot_results.*`
