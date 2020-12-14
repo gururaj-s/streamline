@@ -57,7 +57,7 @@ Gururaj Saileshwar, Christopher Fletcher and Moinuddin Qureshi. **Streamline: A 
    
 5. Running the Experiments:
    - While running the experiments, you may be prompted to enter the sudo password for each experiment run. To allow all the experiments to run uninterrupted, the password timeout can be extended to 3 hours by editing the `/etc/sudoers` file as described in this [link](https://www.tecmint.com/set-sudo-password-timeout-session-longer-linux/).
-       - Do backup the `/etc/sudoers` file and make sure to avoid any errors in this step (mis-configuring this file can cause sudo to stop working).
+       - Do backup the `/etc/sudoers` file and make sure to avoid any errors while modifying it (mis-configuring this file can cause sudo to stop working).
    - All the experiments can be run using `./run_exp.sh` (completes in 2-3 hours).
    - Experiments can be run individually as follows:
        - For base attack (Figure-9, Table-2 in paper): `cd results/base; ./run_base.sh`
