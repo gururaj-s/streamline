@@ -32,7 +32,7 @@ Gururaj Saileshwar, Christopher Fletcher and Moinuddin Qureshi. **Streamline: A 
 3. Setting the System-Specific Parameters in `src/params.hh`:
    - Set the SYS_FREQ_MHZ in src/utils.hh (set it to the average system frequency in MHz measured above)
    - Set the DEFAULT_FILENAME path in src/fr_util.hh (set it to the full path of shared_readonly_file.txt in the repository)
-   - Set the CACHE_SZ in src/utils.hh (set it to the LLC Size in Bytes). The size in KB can be identified using `grep "cache size" /proc/cpuinfo`
+   - **TODO: Fix SegFault with this Step**:- Set the CACHE_SZ in src/utils.hh (set it to the LLC Size in Bytes). The size in KB can be identified using `grep "cache size" /proc/cpuinfo`
        - If CACHE_SZ > 12MB, then size of shared_readonly_file.txt needs to be increased (to beyond 8*CACHE_SZ). This can be done with `head -c <CACHE_SZ_IN_MB+1>M </dev/urandom >shared_readonly_file.txt`
    - **TODO: LLC-Hit-Threshold**
    
