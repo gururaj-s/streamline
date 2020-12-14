@@ -30,10 +30,11 @@ Gururaj Saileshwar, Christopher Fletcher and Moinuddin Qureshi. **Streamline: A 
    - Note the average frequency and set it in the next step in `src/params.hh`
 
 3. Setting the System-Specific Parameters in `src/params.hh`:
-   - **TODO**
-   - Set the SYS_FREQ_MHZ in src/util.hh (set it to the average system frequency in MHz measured above)
+   - Set the SYS_FREQ_MHZ in src/utils.hh (set it to the average system frequency in MHz measured above)
    - Set the DEFAULT_FILENAME path in src/fr_util.hh (set it to the full path of shared_readonly_file.txt in the repository)
-
+   - Set the CACHE_SZ in src/utils.hh (set it to the LLC Size in Bytes). The size in KB can be identified using `grep "cache size" /proc/cpuinfo`
+   - **TODO: LLC-Hit-Threshold**
+   
 4. Building the Attack:
    - To build the binaries for all the attack experiments, use `make all`
    - To only build the binaries for some of the experiments, use the following:
@@ -50,7 +51,7 @@ Gururaj Saileshwar, Christopher Fletcher and Moinuddin Qureshi. **Streamline: A 
    - The test should run within a few seconds and print the following output:
        - First, the Bit-Period, Bit-rate, and bit-error-rates (with a breakup of 1->0 errors and 0->1 errors).
        - Then, the statistics per epoch of 200,0000 bits (the granularity at which synchronization occurs).
-   - FinalCorrectSamples in the output should be >99% (i.e. error-rate is <1%).
+   - FinalCorrectSamples in the output should be close to 99% (i.e. error-rate close to 1%).
        - A high error-rate could indicate a misconfiguration of the attack parameters; subsequent experiments might fail as well.  
    
 5. Running the Experiments:
