@@ -7,10 +7,6 @@
 //Header Functions for Initial Flush+Reload Handshake
 #include "fr_util.hh"
 
-
-// Cache miss latency threshold
-int CACHE_MISS_LATENCY = 200;
-
 /* 
  * Receiver for Flush+Reload (Used for Initial Handshake with Sender)
  * Detects a bit by repeatedly measuring the access time of the load from config->addr
@@ -34,7 +30,7 @@ bool detect_bit(struct config *config, int interval)
     // Ignore access times larger than 1000 cycles usually due to a disk miss.
     if (access_time < 1000) {
       // Count if it's a miss or hit depending on latency
-      if (access_time > CACHE_MISS_LATENCY) {
+      if (access_time > LLC_MISS_THRESHOLD_CYCLES) {
         misses++;
       } else {
         hits++;
@@ -50,8 +46,7 @@ bool detect_bit(struct config *config, int interval)
 #define HEARTBEAT_FREQ (1000)
 
 //-------- Access Pattern ----------
-// Beating the Prefetcher (*Gap-3*) : Access 3n CL from 0 and 1 page, then continue to 2,3 .. 4,5 ... and so on.
-// l%2 + int(int(l/2)*3/64)*2 - Alternate between odd and even page. Base-Page decided by whether access crosses page-boundary.
+// Access every 3n cacheline alternating between page 0 and page 1, then continue to pages 2,3 .. 4,5 ... and so on.
 #define PG_NUM(l) (((uint64_t)(((uint64_t)(l/2))*3/CL_IN_PAGE))*2 + l%2)
 #define CL_NUM(l) ((((uint64_t)(l/2))*3 + 14) % CL_IN_PAGE)
 #define BITID_2_ARRINDEX(l) ( PG_NUM(l)*ENTRY_PER_PAGE + CL_NUM(l)*ENTRY_PER_CL )
@@ -104,8 +99,8 @@ std::tr1::uniform_int<int> channel_enc(0, 1); //uniform distribution [0,1]
 // -------- Transmission Parameters  -------------
 
 //Threshold for LLC-Hit
-uint64_t LLC_HIT_THRESHOLD_CYCLES_SYNC = 200;
-uint64_t LLC_HIT_THRESHOLD_CYCLES_COMM = 180;
+uint64_t LLC_HIT_THRESHOLD_CYCLES_SYNC = LLC_MISS_THRESHOLD_CYCLES;
+uint64_t LLC_HIT_THRESHOLD_CYCLES_COMM = LLC_MISS_THRESHOLD_CYCLES;
 
 //Number of Bits to be transmitted.
 uint64_t NUM_BITS = 1; //Number of bits to be transmitted

@@ -90,8 +90,8 @@ std::tr1::uniform_int<int> channel_enc(0, 1); //uniform distribution [0,1]
 // -------- Transmission Parameters  -------------
 
 //Threshold for LLC-Hit
-uint64_t LLC_HIT_THRESHOLD_CYCLES_SYNC = 200;
-uint64_t LLC_HIT_THRESHOLD_CYCLES_COMM = 180;
+uint64_t LLC_HIT_THRESHOLD_CYCLES_SYNC = LLC_MISS_THRESHOLD_CYCLES;
+uint64_t LLC_HIT_THRESHOLD_CYCLES_COMM = LLC_MISS_THRESHOLD_CYCLES;
 
 //Number of Bits to be transmitted.
 uint64_t NUM_BITS = 1; //Number of bits to be transmitted

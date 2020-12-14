@@ -56,6 +56,8 @@
 //SYSTEM-SPECIFIC DEFINES
 #define CACHE_SZ (8*1024*1024)
 #define SYS_FREQ_MHZ (3900)
+#define LLC_MISS_THRESHOLD_CYCLES (180)
+
 // Other Sizes
 #define PAGE_SZ (4*1024)
 #define CACHELINE_SZ (64)
