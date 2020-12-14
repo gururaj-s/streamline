@@ -19,17 +19,17 @@ Gururaj Saileshwar, Christopher Fletcher and Moinuddin Qureshi. **Streamline: A 
     
 ### Steps to Run (and reproduce Fig-9, Tables-2,3,4,5 from the paper)
 
-1. *Enable Transparent Huge Pages (THP):*
+**1. Enable Transparent Huge Pages (THP):**
    - On Fedora and Ubuntu: Checking the status of THP: `cat /sys/kernel/mm/transparent_hugepage/enabled`   (note the default value)
    - To enable THP : `sudo -i ;` to enter root mode. Then, `echo "always" > /sys/kernel/mm/transparent_hugepage/enabled` (after completing the experiments, you may want to reset this to default by repeating `echo "<default value>" > ...`)
 
-2. *Set the CPU Frequency to a stable value (this ensures stable bit-rate measurement):*
+**2. Set the CPU Frequency to a stable value (this ensures stable bit-rate measurement):**
    - On Fedora and Ubuntu: First, check the default frequency governor set in the current policy: `cpupower frequency-info | grep governor`
    - Set the frequency governer to "performance":  `sudo cpupower frequency-set -g performance`
    - Read the frequency and make sure it is relatively stable: `for i in 1 2 3 4 5; do cpupower frequency-info | grep "current CPU frequency"; done`
    - Note the average frequency and set it in the next step in `src/utils.hh`
 
-3. *Setting the System-Specific Parameters in `src/utils.hh`:*
+**3. Setting the System-Specific Parameters in `src/utils.hh`:**
    - Set the `SYS_FREQ_MHZ` (to the average system frequency in MHz, as measured above)
    - Set the `LLC_MISS_THRESHOLD_CYCLES` by profiling it as below: 
        - `cd system_config; ./run_profiling.sh`. The recommended `LLC_MISS_THRESHOLD_CYCLES` is printed at end of the output (and in results.txt).
@@ -38,7 +38,7 @@ Gururaj Saileshwar, Christopher Fletcher and Moinuddin Qureshi. **Streamline: A 
        - If `CACHE_SZ > 12MB`, then the size of `shared_readonly_file.txt` has to be increased (git does not allow files larger than 100MB). This can be done by `head -c (1+8*<CACHE_SZ_IN_MB>)M </dev/urandom >shared_readonly_file.txt`
    - Set the `SHARED_READONLY_FILE_PATH` (to the full path of shared_readonly_file.txt in the repository)
    
-4. *Building the Attack:*
+**4. Building the Attack:**
    - To build the binaries for all the attack experiments, use `make all`
    - Otherwise, to only build the binaries for some of the experiments, use the following:
        - For the baseline attack (Figure-9, Table-2 in paper) : `make base`
@@ -46,7 +46,7 @@ Gururaj Saileshwar, Christopher Fletcher and Moinuddin Qureshi. **Streamline: A 
        - For the sensitivity study varying shared-array sizes (Table-4 in paper) : `make array_sz`
        - For the sensitivity study with varying synchronization-periods (Table-5 in paper) : `make sync_period`
 
-5. *Testing the Base Attack:*
+**5. Testing the Base Attack:**
    - Run the command: `numbits=1000000; sudo ./bin/receiver.o -n $numbits & sudo ./bin/sender.o -n $numbits >>sender_out.log 2>&1`
    - The code requires sudo privilege to set core-affinity and scheduler-policy/priority for the program.
    - The test should run within a few seconds and print the following output:
@@ -55,7 +55,7 @@ Gururaj Saileshwar, Christopher Fletcher and Moinuddin Qureshi. **Streamline: A 
    - FinalCorrectSamples in the output should be close to 99% (i.e. error-rate close to 1%).
        - A high error-rate could indicate a misconfiguration of the attack parameters; subsequent experiments might fail as well.  
    
-5. *Running the Experiments:*
+**6. Running the Experiments:**
    - While running the experiments, you may be prompted to enter the sudo password for each experiment run. To allow all the experiments to run uninterrupted, the password timeout can be extended to 3 hours by editing the `/etc/sudoers` file as described in this [link](https://www.tecmint.com/set-sudo-password-timeout-session-longer-linux/).
        - Do backup the `/etc/sudoers` file and make sure to avoid any errors while modifying it (mis-configuring this file can cause sudo to stop working).
    - All the experiments can be run using `./run_exp.sh` (completes in 2-3 hours).
@@ -65,6 +65,6 @@ Gururaj Saileshwar, Christopher Fletcher and Moinuddin Qureshi. **Streamline: A 
        - For the sensitivity study varying shared-array sizes (Table-4 in paper) : `cd results/array_sz; ./run_array_sz.sh`
        - For the sensitivity study with varying synchronization-periods (Table-5 in paper) : `cd results/sync_period; ./run_sync_period.sh`
 
-6. *Analyzing the Results:*
+**6. Analyzing the Results:**
    - After the run-scripts complete, the results are saved in `results/*/*_results.txt` for each experiment.
    - **TODO** To visualize the results, use `jupyter notebook plot_results.*`
