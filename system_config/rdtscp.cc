@@ -143,6 +143,6 @@ int main(int argc, char** argv){
 
   printf("HITS -> Avg: %lu . Min: %lu . Max: %lu \n",avg_hit,min_hit,max_hit);
   printf("MISS -> Avg: %lu . Min: %lu . Max: %lu \n",avg_miss,min_miss,max_miss);
-  printf("Suggested LLC_MISS_THRESHOLD -> %lu \n",min_miss);
+  printf("Suggested LLC_MISS_THRESHOLD_CYCLES -> %lu \n",min_miss);
   
 }
