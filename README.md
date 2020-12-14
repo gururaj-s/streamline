@@ -31,7 +31,7 @@ Gururaj Saileshwar, Christopher Fletcher and Moinuddin Qureshi. **Streamline: A 
 
 3. Setting the System-Specific Parameters in `src/params.hh`:
    - **TODO**
-   - Set the average frequency in GHz in
+   - Set the SYS_FREQ_MHZ in src/util.hh (set it to the average system frequency in MHz measured above)
    - Set the DEFAULT_FILENAME path in src/fr_util.hh (set it to the full path of shared_readonly_file.txt in the repository)
 
 4. Building the Attack:
