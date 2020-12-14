@@ -40,13 +40,11 @@ Gururaj Saileshwar, Christopher Fletcher and Moinuddin Qureshi. **Streamline: A 
    
 4. Building the Attack:
    - To build the binaries for all the attack experiments, use `make all`
-   - To only build the binaries for some of the experiments, use the following:
+   - Otherwise, to only build the binaries for some of the experiments, use the following:
        - For the baseline attack (Figure-9, Table-2 in paper) : `make base`
        - For the attack with ECC enabled (Table-3 in paper) : `make ecc`
        - For the sensitivity study varying shared-array sizes (Table-4 in paper) : `make array_sz`
        - For the sensitivity study with varying synchronization-periods (Table-5 in paper) : `make sync_period`
-       - **TODO** For the prior work comparison (Flush+Reload) (Figure-10 in paper) : `make prior_FR`
-
 
 5. Testing the Base Attack:
    - Run the command: `numbits=1000000; sudo ./bin/receiver.o -n $numbits &; sudo ./bin/sender.o -n $numbits >>sender_out.log 2>&1` ;
