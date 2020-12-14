@@ -25,17 +25,17 @@ Gururaj Saileshwar, Christopher Fletcher and Moinuddin Qureshi. **Streamline: A 
 
 2. Set the CPU Frequency to a stable value (this ensures stable bit-rate measurement):
    - On Fedora and Ubuntu: First, check the default frequency governor set in the current policy: `cpupower frequency-info | grep governor`
-   - Set the frequency governer to "performance" - `sudo cpupower frequency-set -g performance`
-   - Read the frequency and make sure it is relatively stable - `for i in 1 2 3 4 5; do cpupower frequency-info | grep "current CPU frequency"; done`
-   - Note the average frequency and set it in the next step in `src/params.hh`
+   - Set the frequency governer to "performance":  `sudo cpupower frequency-set -g performance`
+   - Read the frequency and make sure it is relatively stable: `for i in 1 2 3 4 5; do cpupower frequency-info | grep "current CPU frequency"; done`
+   - Note the average frequency and set it in the next step in `src/utils.hh`
 
-3. Setting the System-Specific Parameters in `src/params.hh`:
-   - Set the SYS_FREQ_MHZ in src/utils.hh (set it to the average system frequency in MHz measured above)
-   - Set the LLC_MISS_THRESHOLD_CYCLES in src/utils.hh
-       - This can be profiled using `cd system_config; ./run_profiling.sh`. The recommended LLC_MISS_THRESHOLD_CYCLES is printed at end of the output (and in results.txt).
-       - The distribution of L2-Hit vs LLC-Miss latencies can also be visualized using `python plot_latency_dist.py`.  
-   - Set the CACHE_SZ in src/utils.hh (set it to the LLC Size in _Bytes_). This can be identified using `grep "cache size" /proc/cpuinfo`
-       - If CACHE_SZ > 12MB, then the size of the shared_readonly_file.txt needs to be increased (as git does not allow uploading files larger than 100MB). This can be done with `head -c (1+8*<CACHE_SZ_IN_MB>)M </dev/urandom >shared_readonly_file.txt`
+3. Setting the System-Specific Parameters in `src/utils.hh`:
+   - Set the `SYS_FREQ_MHZ` (to the average system frequency in MHz, as measured above)
+   - Set the `LLC_MISS_THRESHOLD_CYCLES` by profiling it as below: 
+       - Profliing the LLC-Miss Latency can be done by: `cd system_config; ./run_profiling.sh`. The recommended `LLC_MISS_THRESHOLD_CYCLES` is printed at end of the output (and in results.txt).
+       - The distribution of L2-Hit vs LLC-Miss latencies can be visualized using `python plot_latency_dist.py`.  
+   - Set the `CACHE_SZ` in src/utils.hh (set it to the LLC Size in _Bytes_). This can be identified using `grep "cache size" /proc/cpuinfo`
+       - If `CACHE_SZ > 12MB`, then the size of `shared_readonly_file.txt` has to be increased (git does not allow files larger than 100MB). This can be done by `head -c (1+8*<CACHE_SZ_IN_MB>)M </dev/urandom >shared_readonly_file.txt`
    - Set the SHARED_READONLY_FILE_PATH in src/utils.hh (set it to the full path of shared_readonly_file.txt in the repository)
    
 4. Building the Attack:
