@@ -51,4 +51,8 @@ Gururaj Saileshwar, Christopher Fletcher and Moinuddin Qureshi. **Streamline: A 
        - For base attack (Figure-9, Table-2 in paper): `cd results/base; ./run_base.sh`
        - For the attack with ECC enabled (Table-3 in paper) : `cd results/ecc; ./run_ecc.sh`
        - For the sensitivity study varying shared-array sizes (Table-4 in paper) : `cd results/array_sz; ./run_array_sz.sh`
-       - **TODO** For the sensitivity study with varying synchronization-periods (Table-5 in paper) : `cd results/sync_period; ./run_sync_period.sh`
+       - For the sensitivity study with varying synchronization-periods (Table-5 in paper) : `cd results/sync_period; ./run_sync_period.sh`
+
+6. Analyzing the Results:
+   - After the run-scripts complete, the results are saved in : `results/*/*_results.txt` for each of the experiments.
+   - **TODO** To visualize the results, use `jupyter notebook plot_results.*`

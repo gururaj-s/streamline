@@ -6,7 +6,7 @@ base: sender receiver
 ecc: sender_ECC receiver_ECC
 array_sz: sender_arraysz_4X receiver_arraysz_4X  sender_arraysz_2X receiver_arraysz_2X \
 		  sender_arraysz_1X receiver_arraysz_1X
-sync_period: sender_sync_20000 receiver_sync_20000   sender_sync_50000  receiver_sync_50000 \
+sync_period: sender_sync_25000 receiver_sync_25000   sender_sync_50000  receiver_sync_50000 \
 		     sender_sync_100000 receiver_sync_100000 sender_sync_500000 receiver_sync_500000
 clean:
 	rm -rf bin/*.o ; rm -rf bin/sensitivity/*.o
@@ -59,11 +59,11 @@ receiver_arraysz_1X: src/fr_util.hh src/receiver.cc
 # SENSITIVITY TO VARYING SYNCHRONIZATION-PERIOD (Table-5 in paper)
 #------------------------
 #Default: Sync Every 200,000 bits
-#Sync Every 20,000 bits
-sender_sync_20000: src/fr_util.hh src/sender.cc
-	$(CC) $(CFLAGS) $(DEFINES) -DSYNC_FREQ_SENSITIVITY=20000 src/sender.cc src/fec_secded7264.cc -o bin/sensitivity/sender_sync_20000.o
-receiver_sync_20000: src/fr_util.hh src/receiver.cc
-	$(CC) $(CFLAGS) $(DEFINES) -DSYNC_FREQ_SENSITIVITY=20000 src/receiver.cc src/fec_secded7264.cc -o bin/sensitivity/receiver_sync_20000.o
+#Sync Every 25,000 bits
+sender_sync_25000: src/fr_util.hh src/sender.cc
+	$(CC) $(CFLAGS) $(DEFINES) -DSYNC_FREQ_SENSITIVITY=25000 src/sender.cc src/fec_secded7264.cc -o bin/sensitivity/sender_sync_25000.o
+receiver_sync_25000: src/fr_util.hh src/receiver.cc
+	$(CC) $(CFLAGS) $(DEFINES) -DSYNC_FREQ_SENSITIVITY=25000 src/receiver.cc src/fec_secded7264.cc -o bin/sensitivity/receiver_sync_25000.o
 #Sync Every 50,000 bits
 sender_sync_50000: src/fr_util.hh src/sender.cc
 	$(CC) $(CFLAGS) $(DEFINES) -DSYNC_FREQ_SENSITIVITY=50000 src/sender.cc src/fec_secded7264.cc -o bin/sensitivity/sender_sync_50000.o

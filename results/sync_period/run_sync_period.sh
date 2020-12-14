@@ -7,9 +7,9 @@ echo "numbits SyncPeriod bps ber | ber10 ber01 | ber1bit bermultibit"
 ## Evaluating for a payload size of 100 Million Bits
 numbits=100000000
 
-## Running experiments for Synchronization Periods of 20K, 50K, 100K, 500K bits
+## Running experiments for Synchronization Periods of 25K, 50K, 100K, 500K bits
 ## (default is 200K bits)
-for i in 20000 50000 100000 500000 ; do
+for i in 25000 50000 100000 500000 ; do
 
     ## Run the experiment 5 times.
     out_a=`sudo ../../bin/sensitivity/receiver_sync_${i}.o -n $numbits &; sudo ../../bin/sensitivity/sender_sync_${i}.o -n $numbits >>sender_out.log 2>&1 ;`;

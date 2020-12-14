@@ -70,11 +70,7 @@ bool detect_bit(struct config *config, int interval)
 #define TX_SYNC_BITFREQ (SYNC_FREQ_SENSITIVITY)
 #endif
 // Gap Between TX and RX At Syncronization
-#ifdef SAMECORE
-#define TX_SYNC_LAG_DELTA (15000) /*same-core */
-#else
 #define TX_SYNC_LAG_DELTA (5000) /*cross-core */
-#endif
 // Timeout after which Rx exits sync
 #define RX_SYNC_TIMEOUT (5*100*5000)
 
