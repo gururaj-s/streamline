@@ -68,8 +68,8 @@ Gururaj Saileshwar, Christopher Fletcher and Moinuddin Qureshi. **Streamline: A 
 
 **7. Analyzing the Results:**
    - After the run-scripts complete, the results are saved in `results/*/*_results.txt` for each experiment.
-   - To visualize the results (Fig-8, Tables 2, 3, 4, 5), use `jupyter notebook visualize_results.ipynb`
-       - The Attack Bitrate graph (Fig-8) can alternatively also be generated with python2, using `cd results/base ; python plot_bitrate.py`
+   - To visualize the results (Fig-9, Tables 2, 3, 4, 5), use `jupyter notebook visualize_results.ipynb`
+       - The Attack Bitrate graph (Fig-9) can alternatively also be generated with python2, using `cd results/base ; python plot_bitrate.py`
 
 
 **8. Concluding Notes:**
