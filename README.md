@@ -13,9 +13,9 @@ Gururaj Saileshwar, Christopher Fletcher and Moinuddin Qureshi. **Streamline: A 
 * Command-line tool *cpupower* :
     * On Fedora, this can typically be installed with `sudo dnf install kernel-tools`
     * On Ubuntu, this can typically be installed with `sudo apt-get install linux-tools-<KERNEL-VERSION>-generic`
-* Python3, Jupyter Notebook and Python3 Packages (pandas, numpy, matplotlib, seaborn) for Plotting & Visualizing results:
-    * Jupyter Notebook can be installed using the instructions at this [link](https://jupyter.readthedocs.io/en/latest/install/notebook-classic.html).
-    * Python3 packages can be installed using the following links (e.g. using anaconda): [pandas](https://pandas.pydata.org/pandas-docs/stable/getting_started/install.html), [numpy](https://phoenixnap.com/kb/install-numpy), [matplotlib](https://matplotlib.org/3.3.3/users/installing.html), [seaborn](https://seaborn.pydata.org/installing.html). 
+* Python3, Jupyter Notebook and Python3 Packages (pandas, matplotlib, seaborn) for Plotting & Visualizing results:
+    * Jupyter Notebook can be installed using the instructions at the following links: using [anaconda](https://jupyter.readthedocs.io/en/latest/install/notebook-classic.html) or using [virtualenv](https://www.digitalocean.com/community/tutorials/how-to-set-up-jupyter-notebook-with-python-3-on-ubuntu-18-04) (on Ubuntu).
+    * Python3 packages can be installed using the following links (e.g. using anaconda): [pandas](https://pandas.pydata.org/pandas-docs/stable/getting_started/install.html), [matplotlib](https://matplotlib.org/3.3.3/users/installing.html), [seaborn](https://seaborn.pydata.org/installing.html). 
     
 ### Steps to Run (and reproduce Fig-9, Tables-2,3,4,5 from the paper)
 
