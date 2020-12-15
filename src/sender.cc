@@ -3,10 +3,8 @@
    Copyright (C) 2020, Gururaj Saileshwar
 */
 
-#include "utils.hh"
-//Header Functions for Initial Flush+Reload Handshake.
-#include "fr_util.hh"
-
+#include "utils.hh" //Header for Streamline defines.
+#include "fr_util.hh" //Header for Flush+Reload Handshake. (from "https://github.com/yshalabi/covert-channel-tutorial")
 
 /* 
  * Function to send 0/1 via Flush+Reload channel to Receiver (for Initial Handshake)
