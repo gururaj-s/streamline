@@ -13,9 +13,9 @@ Gururaj Saileshwar, Christopher Fletcher and Moinuddin Qureshi. **Streamline: A 
 * Command-line tool *cpupower* :
     * On Fedora, this can typically be installed with `sudo dnf install kernel-tools`
     * On Ubuntu, this can typically be installed with `sudo apt-get install linux-tools-<KERNEL-VERSION>-generic`
-* Python3 and Jupyter Notebooks for Plotting & Visualizing results:
-    * On Fedora, this can be typically installed with `sudo dnf install python3 python3-jupyter_core`
-    * On Ubuntu, you can refer this [link](https://www.digitalocean.com/community/tutorials/how-to-set-up-jupyter-notebook-with-python-3-on-ubuntu-18-04) for instructions.
+* Python3, Jupyter Notebook and Python3 Packages (pandas, numpy, matplotlib, seaborn) for Plotting & Visualizing results:
+    * Jupyter Notebook can be installed using the instructions at this [link](https://jupyter.readthedocs.io/en/latest/install/notebook-classic.html).
+    * Python3 packages can be installed using the following links (e.g. using anaconda): [pandas](https://pandas.pydata.org/pandas-docs/stable/getting_started/install.html), [numpy](https://phoenixnap.com/kb/install-numpy), [matplotlib](https://matplotlib.org/3.3.3/users/installing.html), [seaborn](https://seaborn.pydata.org/installing.html). 
     
 ### Steps to Run (and reproduce Fig-9, Tables-2,3,4,5 from the paper)
 
@@ -33,7 +33,8 @@ Gururaj Saileshwar, Christopher Fletcher and Moinuddin Qureshi. **Streamline: A 
    - Set the `SYS_FREQ_MHZ` (to the average system frequency in MHz, as measured above)
    - Set the `LLC_MISS_THRESHOLD_CYCLES` by profiling it as below: 
        - `cd system_config; ./run_profiling.sh`. The recommended `LLC_MISS_THRESHOLD_CYCLES` is printed at end of the output (and in results.txt).
-       - Distribution of L2-Hit vs LLC-Miss latencies can be visualized using `python plot_latency_dist.py`.  
+       - Distribution of LLC-Hits vs LLC-Miss latencies can be visualized with python2 using `python plot_latency_dist.py` and otherwise with python3 using `jupyter notebook visualize_results.ipynb` and running the first script.
+       - Note that we are measuring same-core LLC-Hit latencies; cross-core LLC-Hit latencies are much closer to the LLC-Miss latency. Hence we recommend using the min of the LLC-Miss latencies as the `LLC_MISS_THRESHOLD_CYCLES`.  
    - Set the `CACHE_SZ` in src/utils.hh (to LLC Size in _Bytes_). This is identified using `grep "cache size" /proc/cpuinfo`
        - If `CACHE_SZ > 12MB`, then the size of `shared_readonly_file.txt` has to be increased (git does not allow files larger than 100MB). This can be done by `head -c (1+8*<CACHE_SZ_IN_MB>)M </dev/urandom >shared_readonly_file.txt`
    - Set the `SHARED_READONLY_FILE_PATH` (to the full path of shared_readonly_file.txt in the repository)
@@ -67,4 +68,11 @@ Gururaj Saileshwar, Christopher Fletcher and Moinuddin Qureshi. **Streamline: A 
 
 **7. Analyzing the Results:**
    - After the run-scripts complete, the results are saved in `results/*/*_results.txt` for each experiment.
-   - **TODO** To visualize the results, use `jupyter notebook plot_results.*`
+   - To visualize the results (Fig-8, Tables 2, 3, 4, 5), use `jupyter notebook visualize_results.ipynb`
+       - The Attack Bitrate graph (Fig-8) can alternatively also be generated with python2, using `cd results/base ; python plot_bitrate.py`
+
+
+**8. Concluding Notes:**
+   - We tested the attack originally on Intel Xeon E3-1270 v5 (Skylake) and subsequently on Intel Core i7-8700K (Kaby Lake), obtaining similar results.
+   - The transmission error-rates can vary by up to 5% on a new system and the LLC-Miss-Threshold-Cycles may need to be tuned to bring it down.
+   - Similarly, the Flush+Reload synchronization is sensitive to the LLC-Miss-Threshold-Cycles and loss of synchronization can lead to channel breakdown.

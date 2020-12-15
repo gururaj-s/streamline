@@ -32,12 +32,5 @@ plt.xlabel('Latencies (cycles)')
 plt.ylabel('Samples (out of 2000)')
 ax = plt.gca()
 ax.legend()
+plt.show()
 plt.savefig('latency_dist.png') 
-
-#data_filtered = data[ (200 < data['1-DRAM'])  & (data['1-DRAM'] < 400) &
-#                      (200 < data['2-DRAM'])  & (data['2-DRAM'] < 400) &
-#                      (200 < data['3-DRAM'])  & (data['3-DRAM'] < 400) ]
-
-#print data_filtered.mean()
-
-#print data.mean()
