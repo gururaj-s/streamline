@@ -70,6 +70,7 @@ Gururaj Saileshwar, Christopher Fletcher and Moinuddin Qureshi. **Streamline: A 
    - After the run-scripts complete, the results are saved in `results/*/*_results.txt` for each experiment.
    - To visualize the results (Fig-9, Tables 2, 3, 4, 5), use `jupyter notebook visualize_results.ipynb`
        - The Attack Bitrate graph (Fig-9) can alternatively also be generated with python2, using `cd results/base ; python plot_bitrate.py`
+   - Note that the protocol in the artifact code is flipped (action on bit value 0 and 1 are opposite) compared to the paper. So the results script flips the 0->1 and 1->0 labels for Table-2. 
 
 
 **8. Concluding Notes:**
